@@ -37,7 +37,7 @@ void TWI_write_data(unsigned char data)
 	TWDR=data;    // put data in TWDR
 	TWCR=(1<<TWINT)|(1<<TWEN);    // Clear TWI interrupt flag,Enable TWI
     while (!(TWCR & (1<<TWINT)));// Wait till complete TWDR byte transmitted
-	while((TWSR & 0xF8) != 0x28); // Check for the acknoledgement
+	while((TWSR & 0xF8) != 0x28); // Check for acknoledgement
 }
 
 void TWI_stop()
