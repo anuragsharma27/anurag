@@ -20,7 +20,7 @@ void master_start()
 {
 	TWCR|=1<<TWINT|1<<TWSTA|1<<TWEN;
 	while (!(TWCR & 1<<TWINT));
-	while((TWSR & 0xF8)!=0x08);   // Check for the acknowledgement
+	while((TWSR & 0xF8)!=0x08);   // Check for  acknowledgement
 	
 }
 void TWI_read_address(unsigned char data)
