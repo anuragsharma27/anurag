@@ -1,0 +1,266 @@
+
+i2c1.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000156  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .stab         000006cc  00000000  00000000  000001ac  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  2 .stabstr      00000085  00000000  00000000  00000878  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  3 .debug_aranges 00000080  00000000  00000000  00000900  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_info   0000050c  00000000  00000000  00000980  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_abbrev 00000166  00000000  00000000  00000e8c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_line   00000396  00000000  00000000  00000ff2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_frame  00000074  00000000  00000000  00001388  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    00000131  00000000  00000000  000013fc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_loc    0000003e  00000000  00000000  0000152d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e6 e5       	ldi	r30, 0x56	; 86
+  68:	f1 e0       	ldi	r31, 0x01	; 1
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a0 36       	cpi	r26, 0x60	; 96
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	10 e0       	ldi	r17, 0x00	; 0
+  78:	a0 e6       	ldi	r26, 0x60	; 96
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a0 36       	cpi	r26, 0x60	; 96
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 76 00 	call	0xec	; 0xec <main>
+  8a:	0c 94 a9 00 	jmp	0x152	; 0x152 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <TWI_init_master>:
+#include <avr/io.h>
+#include <util/delay.h>
+
+void TWI_init_master(void)
+{
+	TWBR=0x01;                // Bit rate
+  92:	81 e0       	ldi	r24, 0x01	; 1
+  94:	80 b9       	out	0x00, r24	; 0
+    TWSR|=(0<<TWPS1|0<<TWPS0);   // Setting prescalar bits
+  96:	81 b1       	in	r24, 0x01	; 1
+  98:	81 b9       	out	0x01, r24	; 1
+                                 // SCL freq= F_CPU/(16+2(TWBR).4^TWPS)
+}
+  9a:	08 95       	ret
+
+0000009c <master_start>:
+
+void master_start()
+{
+	TWCR|=1<<TWINT|1<<TWSTA|1<<TWEN;
+  9c:	86 b7       	in	r24, 0x36	; 54
+  9e:	84 6a       	ori	r24, 0xA4	; 164
+  a0:	86 bf       	out	0x36, r24	; 54
+	while (!(TWCR & 1<<TWINT));
+  a2:	06 b6       	in	r0, 0x36	; 54
+  a4:	07 fe       	sbrs	r0, 7
+  a6:	fd cf       	rjmp	.-6      	; 0xa2 <master_start+0x6>
+	while((TWSR & 0xF8)!=0x08);   // Check for the acknowledgement
+  a8:	81 b1       	in	r24, 0x01	; 1
+  aa:	88 7f       	andi	r24, 0xF8	; 248
+  ac:	88 30       	cpi	r24, 0x08	; 8
+  ae:	e1 f7       	brne	.-8      	; 0xa8 <master_start+0xc>
+	
+}
+  b0:	08 95       	ret
+
+000000b2 <TWI_read_address>:
+void TWI_read_address(unsigned char data)
+{
+	TWDR=data;    // Address and read instruction
+  b2:	83 b9       	out	0x03, r24	; 3
+	TWCR=(1<<TWINT)|(1<<TWEN);    // Clear TWI interrupt flag,Enable TWI
+  b4:	84 e8       	ldi	r24, 0x84	; 132
+  b6:	86 bf       	out	0x36, r24	; 54
+	while (!(TWCR & (1<<TWINT))); // Wait till complete TWDR byte received
+  b8:	06 b6       	in	r0, 0x36	; 54
+  ba:	07 fe       	sbrs	r0, 7
+  bc:	fd cf       	rjmp	.-6      	; 0xb8 <TWI_read_address+0x6>
+	//PORTB=0xff;
+	while((TWSR & 0xF8)!= 0x18);  // Check for the acknoledgement
+  be:	81 b1       	in	r24, 0x01	; 1
+  c0:	88 7f       	andi	r24, 0xF8	; 248
+  c2:	88 31       	cpi	r24, 0x18	; 24
+  c4:	e1 f7       	brne	.-8      	; 0xbe <TWI_read_address+0xc>
+	//PORTB=0xff;
+}
+  c6:	08 95       	ret
+
+000000c8 <TWI_write_data>:
+void TWI_write_data(unsigned char data)
+{
+	TWDR=data;    // put data in TWDR
+  c8:	83 b9       	out	0x03, r24	; 3
+	TWCR=(1<<TWINT)|(1<<TWEN);    // Clear TWI interrupt flag,Enable TWI
+  ca:	84 e8       	ldi	r24, 0x84	; 132
+  cc:	86 bf       	out	0x36, r24	; 54
+    while (!(TWCR & (1<<TWINT)));// Wait till complete TWDR byte transmitted
+  ce:	06 b6       	in	r0, 0x36	; 54
+  d0:	07 fe       	sbrs	r0, 7
+  d2:	fd cf       	rjmp	.-6      	; 0xce <TWI_write_data+0x6>
+	while((TWSR & 0xF8) != 0x28); // Check for the acknoledgement
+  d4:	81 b1       	in	r24, 0x01	; 1
+  d6:	88 7f       	andi	r24, 0xF8	; 248
+  d8:	88 32       	cpi	r24, 0x28	; 40
+  da:	e1 f7       	brne	.-8      	; 0xd4 <TWI_write_data+0xc>
+}
+  dc:	08 95       	ret
+
+000000de <TWI_stop>:
+
+void TWI_stop()
+{
+	TWCR|=(1<<TWSTO)|(1<<TWINT)|(1<<TWEN); 
+  de:	86 b7       	in	r24, 0x36	; 54
+  e0:	84 69       	ori	r24, 0x94	; 148
+  e2:	86 bf       	out	0x36, r24	; 54
+	 while (!(TWCR & (1<<TWSTO)));         // Wait till stop condition is transmitted
+  e4:	06 b6       	in	r0, 0x36	; 54
+  e6:	04 fe       	sbrs	r0, 4
+  e8:	fd cf       	rjmp	.-6      	; 0xe4 <TWI_stop+0x6>
+}	 
+  ea:	08 95       	ret
+
+000000ec <main>:
+
+
+
+
+int main(void)
+{   DDRB=0xff;
+  ec:	8f ef       	ldi	r24, 0xFF	; 255
+  ee:	87 bb       	out	0x17, r24	; 23
+	//PORTB=0xff;
+while (1)
+{
+	TWI_init_master();
+  f0:	0e 94 49 00 	call	0x92	; 0x92 <TWI_init_master>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  f4:	8f ef       	ldi	r24, 0xFF	; 255
+  f6:	99 ef       	ldi	r25, 0xF9	; 249
+  f8:	a0 e0       	ldi	r26, 0x00	; 0
+  fa:	81 50       	subi	r24, 0x01	; 1
+  fc:	90 40       	sbci	r25, 0x00	; 0
+  fe:	a0 40       	sbci	r26, 0x00	; 0
+ 100:	e1 f7       	brne	.-8      	; 0xfa <main+0xe>
+ 102:	00 c0       	rjmp	.+0      	; 0x104 <main+0x18>
+ 104:	00 00       	nop
+	//PORTB=0xff;
+	_delay_ms(20);
+	master_start();
+ 106:	0e 94 4e 00 	call	0x9c	; 0x9c <master_start>
+ 10a:	8f ef       	ldi	r24, 0xFF	; 255
+ 10c:	99 ef       	ldi	r25, 0xF9	; 249
+ 10e:	a0 e0       	ldi	r26, 0x00	; 0
+ 110:	81 50       	subi	r24, 0x01	; 1
+ 112:	90 40       	sbci	r25, 0x00	; 0
+ 114:	a0 40       	sbci	r26, 0x00	; 0
+ 116:	e1 f7       	brne	.-8      	; 0x110 <main+0x24>
+ 118:	00 c0       	rjmp	.+0      	; 0x11a <main+0x2e>
+ 11a:	00 00       	nop
+	//PORTB=0xff;
+	_delay_ms(20);
+	TWI_read_address(0x02);
+ 11c:	82 e0       	ldi	r24, 0x02	; 2
+ 11e:	0e 94 59 00 	call	0xb2	; 0xb2 <TWI_read_address>
+ 122:	8f ef       	ldi	r24, 0xFF	; 255
+ 124:	99 ef       	ldi	r25, 0xF9	; 249
+ 126:	a0 e0       	ldi	r26, 0x00	; 0
+ 128:	81 50       	subi	r24, 0x01	; 1
+ 12a:	90 40       	sbci	r25, 0x00	; 0
+ 12c:	a0 40       	sbci	r26, 0x00	; 0
+ 12e:	e1 f7       	brne	.-8      	; 0x128 <main+0x3c>
+ 130:	00 c0       	rjmp	.+0      	; 0x132 <main+0x46>
+ 132:	00 00       	nop
+	//PORTB=0xff;
+	_delay_ms(20);
+	TWI_write_data(0xff);
+ 134:	8f ef       	ldi	r24, 0xFF	; 255
+ 136:	0e 94 64 00 	call	0xc8	; 0xc8 <TWI_write_data>
+ 13a:	8f ef       	ldi	r24, 0xFF	; 255
+ 13c:	99 ef       	ldi	r25, 0xF9	; 249
+ 13e:	a0 e0       	ldi	r26, 0x00	; 0
+ 140:	81 50       	subi	r24, 0x01	; 1
+ 142:	90 40       	sbci	r25, 0x00	; 0
+ 144:	a0 40       	sbci	r26, 0x00	; 0
+ 146:	e1 f7       	brne	.-8      	; 0x140 <main+0x54>
+ 148:	00 c0       	rjmp	.+0      	; 0x14a <main+0x5e>
+ 14a:	00 00       	nop
+	//PORTB=0xff;
+	_delay_ms(20);
+	TWI_stop();
+ 14c:	0e 94 6f 00 	call	0xde	; 0xde <TWI_stop>
+ 150:	cf cf       	rjmp	.-98     	; 0xf0 <main+0x4>
+
+00000152 <_exit>:
+ 152:	f8 94       	cli
+
+00000154 <__stop_program>:
+ 154:	ff cf       	rjmp	.-2      	; 0x154 <__stop_program>
